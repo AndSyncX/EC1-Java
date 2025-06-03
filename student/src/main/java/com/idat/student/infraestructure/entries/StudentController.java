@@ -31,11 +31,9 @@ public class StudentController {
 
     @GetMapping("/{uid}")
     public ResponseEntity<Student> getStudentById(@PathVariable("uid") String uid) {
-        Student student = studentService.findById(uid);
-        if (student == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(student);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentService.findById(uid));
     }
 
     @PostMapping
